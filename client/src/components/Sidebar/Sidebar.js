@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
 
 const Sidebar = (props) => {
   const classes = useStyles();
-  const conversations = props.conversations || [];
+  const conversations = props.conversations.slice().sort((a,b) => a.id - b.id) || [];
   const { handleChange, searchTerm } = props;
 
   return (
