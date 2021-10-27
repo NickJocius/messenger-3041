@@ -9,9 +9,15 @@ import {
   FormControl,
   TextField,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
 
+const useStyles = makeStyles(() => ({
+  
+}));
+
 const Login = (props) => {
+  const classes = useStyles();
   const history = useHistory();
   const { user, login } = props;
 
