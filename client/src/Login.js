@@ -11,9 +11,13 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
+import SideBanner from "./components/Login/SideBanner";
 
 const useStyles = makeStyles(() => ({
-  
+  root: {
+    minHeight: '100vh',
+  },
+
 }));
 
 const Login = (props) => {
@@ -34,8 +38,12 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
+    <Grid container className={classes.root} spacing={0}>
+      <Grid container item xs={12} sm={4} justify="center">
+        <SideBanner/>
+      </Grid>
+      <Grid container item xs={12} sm={8} justify="center">
+      <Box >
         <Grid container item>
           <Typography>Need to register?</Typography>
           <Button onClick={() => history.push("/register")}>Register</Button>
@@ -67,7 +75,8 @@ const Login = (props) => {
             </Grid>
           </Grid>
         </form>
-      </Box>
+        </Box>
+        </Grid>
     </Grid>
   );
 };
