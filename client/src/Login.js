@@ -24,7 +24,24 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100%',
     width: 380,
     height: 358,
+  },
+  input: {
+    width: '100%',
+    marginTop: '2rem',
+  },
+  buttonBox: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '2rem',
+  },
+  button: {
+    background: ' #3A8DFF',
+    color: '#fff',
+    width: 160,
+    maxWidth: '100%',
+    height: 56,
   }
+
 }));
 
 const Login = (props) => {
@@ -59,33 +76,41 @@ const Login = (props) => {
         <Grid container item xs={12} justifyContent="center">
           <Box className={classes.formBox}>
             <Typography variant='h4'>Welcome back!</Typography>
-          <form onSubmit={handleLogin}>
-            <Grid>
-              <Grid>
-                <FormControl margin="normal" required>
+            <form onSubmit={handleLogin}>
+              <Grid >
+                <Grid container item xs={12}>
+                  <Box className={classes.input}>
+                  <FormControl margin="normal" required fullWidth>
+                  <Typography>E-mail address</Typography>
+                    <TextField
+                      aria-label="username"
+                      label="Username"
+                      name="username"
+                      type="text"
+                    />
+                  </FormControl>
+                  </Box>
+                </Grid>
+                <Box className={classes.input}>
+                <FormControl margin="normal" required fullWidth>
+                <Typography>Password</Typography>
                   <TextField
-                    aria-label="username"
-                    label="Username"
-                    name="username"
-                    type="text"
+                    label="password"
+                    aria-label="password"
+                    type="password"
+                    name="password"
                   />
                 </FormControl>
+                </Box>
+                <Grid>
+                  <Box className={classes.buttonBox}>
+                  <Button type="submit" variant="contained" size="large" className={classes.button}>
+                    Login
+                  </Button>
+                  </Box>
+                </Grid>
               </Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  label="password"
-                  aria-label="password"
-                  type="password"
-                  name="password"
-                />
-              </FormControl>
-              <Grid>
-                <Button type="submit" variant="contained" size="large">
-                  Login
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
+            </form>
           </Box>
           </Grid>
         </Grid>
