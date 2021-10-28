@@ -17,7 +17,14 @@ const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
   },
-
+  top: {
+    maxHeight: 54,
+  },
+  formBox: {
+    maxWidth: '100%',
+    width: 380,
+    height: 358,
+  }
 }));
 
 const Login = (props) => {
@@ -42,40 +49,45 @@ const Login = (props) => {
       <Grid container item xs={12} sm={4} justify="center">
         <SideBanner/>
       </Grid>
-      <Grid container item xs={12} sm={8} justify="center">
-      <Box >
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
+      <Grid container item xs={12} sm={8} >
+        <Grid container spacing={0} className={classes.top}>
+          <Grid container item xs={12} justifyContent="flex-end" >
+            <Typography>Need to register?</Typography>
+            <Button onClick={() => history.push("/register")}>Register</Button>
+          </Grid>
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
+        <Grid container item xs={12} justifyContent="center">
+          <Box className={classes.formBox}>
+            <Typography variant='h4'>Welcome back!</Typography>
+          <form onSubmit={handleLogin}>
             <Grid>
+              <Grid>
+                <FormControl margin="normal" required>
+                  <TextField
+                    aria-label="username"
+                    label="Username"
+                    name="username"
+                    type="text"
+                  />
+                </FormControl>
+              </Grid>
               <FormControl margin="normal" required>
                 <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
+                  label="password"
+                  aria-label="password"
+                  type="password"
+                  name="password"
                 />
               </FormControl>
+              <Grid>
+                <Button type="submit" variant="contained" size="large">
+                  Login
+                </Button>
+              </Grid>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
+          </form>
+          </Box>
           </Grid>
-        </form>
-        </Box>
         </Grid>
     </Grid>
   );
