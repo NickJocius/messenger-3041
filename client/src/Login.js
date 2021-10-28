@@ -46,13 +46,14 @@ const useStyles = makeStyles(() => ({
     height: 358,
   },
   input: {
-    width: '100%',
+    width: '98%',
     marginTop: '2rem',
   },
   buttonBox: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '2rem',
+    paddingBottom: '1rem'
   },
   button2: {
     background: ' #3A8DFF',
@@ -108,7 +109,7 @@ const Login = (props) => {
             <Typography variant='h4'>Welcome back!</Typography>
             <form onSubmit={handleLogin}>
               <Grid >
-                <Grid container item xs={12}>
+                <Grid container item xs={12} justifyContent="center">
                   <Box className={classes.input}>
                   <FormControl margin="normal" required fullWidth>
                   <Typography>Username</Typography>
@@ -122,6 +123,7 @@ const Login = (props) => {
                   </FormControl>
                   </Box>
                 </Grid>
+                <Grid container item xs={12} justifyContent="center">
                 <Box className={classes.input}>
                 <FormControl margin="normal" required fullWidth>
                 <Typography>Password</Typography>
@@ -137,6 +139,7 @@ const Login = (props) => {
                     />
                 </FormControl>
                 </Box>
+                </Grid>
                 <Grid>
                   <Box className={classes.buttonBox}>
                   <Button type="submit" variant="contained" size="large" className={classes.button2}>

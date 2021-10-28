@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100%',
   },
   top: {
-    padding: '2rem 2rem 2rem 0',
+    padding: '2rem 2rem 3rem 0',
     flexShrink: 1,
   },
   topText: {
@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
   },
   input: {
-    width: '100%',
+    width: '98%',
     marginTop: '1.2rem',
     height: 65
   },
@@ -53,6 +53,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     marginTop: '2rem',
+    paddingBottom: '1rem'
   },
   button2: {
     background: ' #3A8DFF',
@@ -108,8 +109,8 @@ const Login = (props) => {
         <Box className={classes.formBox}>
             <Typography variant='h4'>Create an account.</Typography>
             <form onSubmit={handleRegister}>
-            <Grid container item spacing={1} >
-                <Grid container item xs={12} >
+            <Grid >
+                <Grid container item xs={12} justifyContent="center">
                   <Box className={classes.input}>
                     <FormControl margin="normal" required fullWidth>
                       <Typography>Username</Typography>
@@ -124,7 +125,7 @@ const Login = (props) => {
                     </FormControl>
                   </Box>
                 </Grid>
-                <Grid container item xs={12}>
+                <Grid container item xs={12} justifyContent="center">
                   <Box className={classes.input}>
                     <FormControl margin="normal" required fullWidth>
                       <Typography>E-mail address</Typography>
@@ -139,7 +140,7 @@ const Login = (props) => {
                     </FormControl>
                   </Box>
                 </Grid>
-                <Grid container item xs={12}>
+                <Grid container item xs={12} justifyContent="center">
                   <Box className={classes.input}>
                     <FormControl margin="normal" required fullWidth error={!!formErrorMessage.confirmPassword}>
                       <Typography>Password</Typography>
@@ -158,7 +159,7 @@ const Login = (props) => {
                     </FormControl>
                   </Box>
                 </Grid>
-                <Grid container item xs={12}>
+                <Grid container item xs={12} justifyContent="center">
                   <Box className={classes.input}>
                     <FormControl margin="normal" required fullWidth error={!!formErrorMessage.confirmPassword}>
                       <Typography>Confirm Password</Typography>
