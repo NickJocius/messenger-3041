@@ -8,6 +8,8 @@ import {
   Button,
   FormControl,
   TextField,
+  InputAdornment,
+  
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
@@ -16,9 +18,26 @@ import SideBanner from "./components/Login/SideBanner";
 const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
+    maxWidth: '100%',
   },
   top: {
-    maxHeight: 54,
+    height: 54,
+    maxHeight: 'auto',
+    padding: '2rem',
+  },
+  account: {
+    width: 351,
+    maxWidth: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    
+  },
+  button1: {
+    width: 170,
+    background: '#fff',
+    color: '#3A8DFF',
+    height: 54,
+    fontFamily: 'Montserrat',
   },
   formBox: {
     maxWidth: '100%',
@@ -34,12 +53,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     marginTop: '2rem',
   },
-  button: {
+  button2: {
     background: ' #3A8DFF',
     color: '#fff',
     width: 160,
     maxWidth: '100%',
     height: 56,
+    fontFamily: 'Montserrat'
+  },
+  adornment: {
+    '& p': {
+      color: ' #3A8DFF',
+      fontSize: 12,
+    }
+    
   }
 
 }));
@@ -63,15 +90,17 @@ const Login = (props) => {
 
   return (
     <Grid container className={classes.root} spacing={0}>
-      <Grid container item xs={12} sm={4} justify="center">
+      <Grid container item xs={12} sm={4} justifyContent="center">
         <SideBanner/>
       </Grid>
       <Grid container item xs={12} sm={8} >
-        <Grid container spacing={0} className={classes.top}>
-          <Grid container item xs={12} justifyContent="flex-end" >
-            <Typography>Need to register?</Typography>
-            <Button onClick={() => history.push("/register")}>Register</Button>
+        <Grid container spacing={0} className={classes.top} justifyContent="flex-end">
+          <Grid container item xs={12} sm={6} md={4} alignItems="center">
+            <Typography>Don't have an account?</Typography>
           </Grid>
+          <Grid container item xs={12} sm={6} md={4}> 
+            <Button onClick={() => history.push("/register")} variant="contained" size="large" className={classes.button1}>Create account</Button>
+          </Grid>   
         </Grid>
         <Grid container item xs={12} justifyContent="center">
           <Box className={classes.formBox}>
@@ -81,12 +110,13 @@ const Login = (props) => {
                 <Grid container item xs={12}>
                   <Box className={classes.input}>
                   <FormControl margin="normal" required fullWidth>
-                  <Typography>E-mail address</Typography>
-                    <TextField
-                      aria-label="username"
-                      label="Username"
-                      name="username"
-                      type="text"
+                  <Typography>Username</Typography>
+                      <TextField
+                        margin="normal"
+                        aria-label="username"
+                        size="medium"
+                        name="username"
+                        type="text"
                     />
                   </FormControl>
                   </Box>
@@ -94,17 +124,22 @@ const Login = (props) => {
                 <Box className={classes.input}>
                 <FormControl margin="normal" required fullWidth>
                 <Typography>Password</Typography>
-                  <TextField
-                    label="password"
-                    aria-label="password"
-                    type="password"
-                    name="password"
-                  />
+                    <TextField
+                      margin="normal"
+                      size="medium"
+                      aria-label="password"
+                      type="password"
+                      name="password"
+                      InputProps={{
+                        endAdornment: <InputAdornment position="end" className={classes.adornment}>Forgot?</InputAdornment>
+                      }}
+                    />
+                    
                 </FormControl>
                 </Box>
                 <Grid>
                   <Box className={classes.buttonBox}>
-                  <Button type="submit" variant="contained" size="large" className={classes.button}>
+                  <Button type="submit" variant="contained" size="large" className={classes.button2}>
                     Login
                   </Button>
                   </Box>

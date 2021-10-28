@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root: {
         textAlign: 'center',
-        maxWidth: 268,
+        maxWidth: 288,
     },
     oval: {
         marginBottom: '2rem',
@@ -23,7 +23,7 @@ const SideBannerTextBox = () => {
     const classes = useStyles();
     return (
         <Box className={classes.root}>
-            <img src={bubble} alt="bubble image" className={classes.oval} />
+            <img src={bubble} alt="bubble" className={classes.oval} />
             <Typography className={classes.chat} gutterBottom>
                 Converse with anyone with any language
             </Typography>
