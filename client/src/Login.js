@@ -21,9 +21,12 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100%',
   },
   top: {
-    height: 54,
-    maxHeight: 'auto',
+    
     padding: '2rem',
+    flexGrow: 1
+  },
+  topText: {
+    paddingTop: '1rem'
   },
   account: {
     width: 351,
@@ -95,10 +98,10 @@ const Login = (props) => {
       </Grid>
       <Grid container item xs={12} sm={8} >
         <Grid container spacing={0} className={classes.top} justifyContent="flex-end">
-          <Grid container item xs={12} sm={6} md={4} alignItems="center">
-            <Typography>Don't have an account?</Typography>
+          <Grid container item xs={6}  sm={4} alignItems="start" justifyContent="flex-end">
+            <Typography className={classes.topText}>Don't have an account?</Typography>
           </Grid>
-          <Grid container item xs={12} sm={6} md={4}> 
+          <Grid container item xs={6} sm={4} justifyContent="flex-end"> 
             <Button onClick={() => history.push("/register")} variant="contained" size="large" className={classes.button1}>Create account</Button>
           </Grid>   
         </Grid>
