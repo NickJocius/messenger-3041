@@ -21,7 +21,6 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100%',
   },
   top: {
-    
     padding: '2rem',
     flexGrow: 1
   },
@@ -33,7 +32,6 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100%',
     display: 'flex',
     alignItems: 'center',
-    
   },
   button1: {
     width: 170,
@@ -137,7 +135,6 @@ const Login = (props) => {
                         endAdornment: <InputAdornment position="end" className={classes.adornment}>Forgot?</InputAdornment>
                       }}
                     />
-                    
                 </FormControl>
                 </Box>
                 <Grid>
