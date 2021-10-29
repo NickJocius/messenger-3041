@@ -14,8 +14,10 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
 import SideBanner from "./components/Login/SideBanner";
+import FormInput from "./components/Login/FormInput";
+import UserForm from "./components/Login/UserForm";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     maxWidth: '100%',
@@ -36,7 +38,7 @@ const useStyles = makeStyles(() => ({
   button1: {
     width: 170,
     background: '#fff',
-    color: '#3A8DFF',
+    color: theme.palette.primary,
     height: 54,
     fontFamily: 'Montserrat',
   },
@@ -56,16 +58,15 @@ const useStyles = makeStyles(() => ({
     paddingBottom: '1rem'
   },
   button2: {
-    background: ' #3A8DFF',
+    background: theme.palette.primary,
     color: '#fff',
     width: 160,
     maxWidth: '100%',
     height: 56,
-    fontFamily: 'Montserrat'
   },
   adornment: {
     '& p': {
-      color: ' #3A8DFF',
+      color: theme.palette.primary,
       fontSize: 12,
     }
     
@@ -104,53 +105,22 @@ const Login = (props) => {
             <Button onClick={() => history.push("/register")} variant="contained" size="large" className={classes.button1}>Create account</Button>
           </Grid>   
         </Grid>
-        <Grid container item xs={12} justifyContent="center">
-          <Box className={classes.formBox}>
-            <Typography variant='h4'>Welcome back!</Typography>
-            <form onSubmit={handleLogin}>
-              <Grid >
-                <Grid container item xs={12} justifyContent="center">
-                  <Box className={classes.input}>
-                  <FormControl margin="normal" required fullWidth>
-                  <Typography>Username</Typography>
-                      <TextField
-                        margin="normal"
-                        aria-label="username"
-                        size="medium"
-                        name="username"
-                        type="text"
-                    />
-                  </FormControl>
-                  </Box>
-                </Grid>
-                <Grid container item xs={12} justifyContent="center">
-                <Box className={classes.input}>
-                <FormControl margin="normal" required fullWidth>
-                <Typography>Password</Typography>
-                    <TextField
-                      margin="normal"
-                      size="medium"
-                      aria-label="password"
-                      type="password"
-                      name="password"
-                      InputProps={{
-                        endAdornment: <InputAdornment position="end" className={classes.adornment}>Forgot?</InputAdornment>
-                      }}
-                    />
-                </FormControl>
-                </Box>
-                </Grid>
-                <Grid>
-                  <Box className={classes.buttonBox}>
-                  <Button type="submit" variant="contained" size="large" className={classes.button2}>
-                    Login
-                  </Button>
-                  </Box>
-                </Grid>
-              </Grid>
-            </form>
-          </Box>
-          </Grid>
+        <UserForm
+          heading="Welcome back!"
+          userAction="Login"
+          handler={handleLogin}
+        >
+          <FormInput
+            name="Username"
+            adorn={false}
+            type="text"
+          />
+          <FormInput
+            name="Password"
+            adorn={true}
+            type="password"
+          />
+        </UserForm>
         </Grid>
     </Grid>
   );
