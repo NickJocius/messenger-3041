@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     formBox: {
         maxWidth: '100%',
         width: 380,
-        height: 358,
+        height: 'fit-content'
     },
     buttonBox: {
         display: 'flex',
@@ -32,9 +32,9 @@ const UserForm = ({ heading,userAction,handler, children }) => {
     const classes = useStyles();
 
     return (
-        <Grid container item xs={12} justifyContent="center">
+        <Grid container  xs={12} justifyContent="center">
             <Box className={classes.formBox}>
-                <Typography variant='h4'>{heading}</Typography>
+                <Typography variant='h5'>{heading}</Typography>
                 <form onSubmit={handler}>
                     <Grid>
                         {children}

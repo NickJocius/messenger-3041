@@ -9,11 +9,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        padding: '2rem',
+        padding: '2rem 2rem 0 2rem',
         flexGrow: 1
     },
     topText: {
-        paddingTop: '1rem'
+        paddingTop: '1rem',
+        color: theme.palette.secondary.main,
     },
     button1: {
         width: 170,
@@ -28,12 +29,12 @@ export const LinkBox = ({text, userAction}) => {
     const classes = useStyles();
     const history = useHistory();
 
-    const buttonLink = text === "Login" ? "/login" : "/register";
+    const buttonLink = (userAction === "Login" ? "/login" : "/register");
 
     return (
 
         <Grid container item spacing={0} className={classes.root} justifyContent="flex-end">
-          <Grid container item xs={6}  sm={4} alignItems="start" justifyContent="flex-end">
+          <Grid container item xs={6}  sm={4} alignItems="flex-start" justifyContent="flex-end">
             <Typography className={classes.topText}>{text}</Typography>
           </Grid>
           <Grid container item xs={6} sm={4} justifyContent="flex-end"> 
