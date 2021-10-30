@@ -10,11 +10,18 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root: {
         padding: '2rem 2rem 0 2rem',
-        flexGrow: 1
+        [theme.breakpoints.down('xs')]: {
+            padding: '2rem .2rem 2rem .2rem',
+            justifyContent: 'center'
+        },
+        flexGrow: 0
     },
     topText: {
         paddingTop: '1rem',
         color: theme.palette.secondary.main,
+        [theme.breakpoints.down('xs')]: {
+            fontSize: 14,
+        }
     },
     button1: {
         width: 170,
@@ -38,7 +45,7 @@ export const LinkBox = ({text, userAction}) => {
           <Grid container item xs={6}  sm={4} alignItems="flex-start" justifyContent="flex-end">
             <Typography className={classes.topText}>{text}</Typography>
           </Grid>
-          <Grid container item xs={6} sm={4} justifyContent="flex-end"> 
+            <Grid container item xs={6} sm={4} justifyContent="flex-end">
             <Button onClick={() => history.push(`${buttonLink}`)} variant="contained" size="large" className={classes.button1}>{userAction}</Button>
           </Grid>   
         </Grid>

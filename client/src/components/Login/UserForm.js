@@ -8,6 +8,9 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow:1,
+    },
     formBox: {
         maxWidth: '100%',
         width: 380,
@@ -33,7 +36,7 @@ const UserForm = ({ heading,userAction,handler, children }) => {
     const classes = useStyles();
 
     return (
-        <Grid container  xs={12} justifyContent="center">
+        <Grid container  xs={12} justifyContent="center" className={classes.root}>
             <Box className={classes.formBox}>
                 <Typography variant='h5'>{heading}</Typography>
                 <form onSubmit={handler}>
