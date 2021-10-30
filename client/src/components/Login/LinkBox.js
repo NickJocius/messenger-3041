@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         padding: '2rem 2rem 0 2rem',
         [theme.breakpoints.down('xs')]: {
-            padding: '2rem .2rem 2rem .2rem',
+            padding: '2rem 2rem 1rem 1rem',
             justifyContent: 'center'
         },
         flexGrow: 0

@@ -38,7 +38,7 @@ const ErrorInput = ({ title,name, type, adorn, req, formErrorMessage }) => {
                     <Typography className={classes.label}>{title}</Typography>
                     <TextField
                         margin="dense"
-                        aria-label={`${name.toLowerCase()}`}
+                        aria-label={name.toLowerCase()}
                         size="small"
                         name={`${name}`}
                         type={`${type.toLowerCase()}`}
