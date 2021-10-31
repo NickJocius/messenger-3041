@@ -1,19 +1,32 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
-  FormHelperText,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { register } from "./store/utils/thunkCreators";
+import SideBanner from "./components/SideBanner/SideBanner";
+import LinkBox from "./components/forms/LinkBox";
+import FormInput from "./components/forms/FormInput";
+import ErrorInput from "./components/forms/ErrorInput";
+import UserForm from "./components/forms/UserForm";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    minHeight: '100vh',
+    maxWidth: '100%',
+  },
+  account: {
+    width: 351,
+    maxWidth: '100%',
+    display: 'flex',
+    alignItems: 'center',
+  },
+}));
 
 const Login = (props) => {
-  const history = useHistory();
+  const classes = useStyles();
   const { user, register } = props;
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -37,72 +50,52 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to log in?</Typography>
-          <Button onClick={() => history.push("/login")}>Login</Button>
+    <Grid container className={classes.root} spacing={0} justifyContent="space-around">
+      <Grid container item xs={12} sm={4} justifyContent="center">
+        <SideBanner/>
+      </Grid>
+      <Grid container item xs={12} sm={8}>
+        <LinkBox
+          text="Already have an account?"
+          userAction="Login"
+        />   
+        <UserForm
+          heading="Create an account."
+          userAction="Create"
+          handler={handleRegister}
+        >
+          <FormInput
+            title="Username"
+            name="username"
+            type="text"
+            adorn={false}
+            req={true}
+          />
+          <FormInput
+            title="E-mail address"
+            name="email"
+            type="email"
+            adorn={false}
+            req={true}
+          />
+          <ErrorInput
+            title="Password"
+            name="password"
+            type="password"
+            formErrorMessage={formErrorMessage}
+            adorn={false}
+            req={true}
+          />
+          <ErrorInput
+            title="Confirm Password"
+            name="confirmPassword"
+            type="password"
+            formErrorMessage={formErrorMessage}
+            adorn={false}
+            req={true}
+          />
+        </UserForm>
         </Grid>
-        <form onSubmit={handleRegister}>
-          <Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl>
-                <TextField
-                  label="E-mail address"
-                  aria-label="e-mail address"
-                  type="email"
-                  name="email"
-                  required
-                />
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  aria-label="password"
-                  label="Password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="password"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Grid>
-              <FormControl error={!!formErrorMessage.confirmPassword}>
-                <TextField
-                  label="Confirm Password"
-                  aria-label="confirm password"
-                  type="password"
-                  inputProps={{ minLength: 6 }}
-                  name="confirmPassword"
-                  required
-                />
-                <FormHelperText>
-                  {formErrorMessage.confirmPassword}
-                </FormHelperText>
-              </FormControl>
-            </Grid>
-            <Button type="submit" variant="contained" size="large">
-              Create
-            </Button>
-          </Grid>
-        </form>
-      </Box>
     </Grid>
   );
 };

@@ -1,18 +1,31 @@
 import React from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
-  Typography,
-  Button,
-  FormControl,
-  TextField,
 } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
+import SideBanner from "./components/SideBanner/SideBanner";
+import FormInput from "./components/forms/FormInput";
+import UserForm from "./components/forms/UserForm";
+import LinkBox from "./components/forms/LinkBox";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: '100vh',
+    maxWidth: '100%',
+  },
+  account: {
+    width: 351,
+    maxWidth: '100%',
+    display: 'flex',
+    alignItems: 'center',
+  },
+}));
 
 const Login = (props) => {
-  const history = useHistory();
+  const classes = useStyles();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -28,40 +41,36 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
-      <Box>
-        <Grid container item>
-          <Typography>Need to register?</Typography>
-          <Button onClick={() => history.push("/register")}>Register</Button>
+    <Grid container className={classes.root} spacing={0} >
+      <Grid container item xs={12} sm={4} justifyContent="center">
+        <SideBanner/>
+      </Grid>
+      <Grid container item xs={12} sm={8}>
+        <LinkBox
+          text="Don't have an account?"
+          userAction="Create account"
+        />
+        <UserForm
+          heading="Welcome back!"
+          userAction="Login"
+          handler={handleLogin}
+        >
+          <FormInput
+            title="Username"
+            name="username"
+            adorn={false}
+            type="text"
+            req={false}
+          />
+          <FormInput
+            title="Password"
+            name="password"
+            adorn={true}
+            type="password"
+            req={false}
+          />
+        </UserForm>
         </Grid>
-        <form onSubmit={handleLogin}>
-          <Grid>
-            <Grid>
-              <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
-                />
-              </FormControl>
-            </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
-            <Grid>
-              <Button type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
-      </Box>
     </Grid>
   );
 };
