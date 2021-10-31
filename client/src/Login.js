@@ -6,10 +6,10 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { login } from "./store/utils/thunkCreators";
-import SideBanner from "./components/Login/SideBanner";
-import FormInput from "./components/Login/FormInput";
-import UserForm from "./components/Login/UserForm";
-import LinkBox from "./components/Login/LinkBox";
+import SideBanner from "./components/SideBanner/SideBanner";
+import FormInput from "./components/forms/FormInput";
+import UserForm from "./components/forms/UserForm";
+import LinkBox from "./components/forms/LinkBox";
 
 const useStyles = makeStyles((theme) => ({
   root: {

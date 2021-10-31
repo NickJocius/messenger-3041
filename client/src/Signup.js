@@ -6,11 +6,11 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { register } from "./store/utils/thunkCreators";
-import SideBanner from "./components/Login/SideBanner";
-import LinkBox from "./components/Login/LinkBox";
-import FormInput from "./components/Login/FormInput";
-import ErrorInput from "./components/Login/ErrorInput";
-import UserForm from "./components/Login/UserForm";
+import SideBanner from "./components/SideBanner/SideBanner";
+import LinkBox from "./components/forms/LinkBox";
+import FormInput from "./components/forms/FormInput";
+import ErrorInput from "./components/forms/ErrorInput";
+import UserForm from "./components/forms/UserForm";
 
 const useStyles = makeStyles(() => ({
   root: {
