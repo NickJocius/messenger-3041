@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { FormControl, FilledInput } from "@material-ui/core";
+import { FormControl, FilledInput, InputAdornment, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MoodIcon from '@material-ui/icons/Mood';
 import FilterNoneIcon from '@material-ui/icons/FilterNone';
 import { connect } from "react-redux";
 import { postMessage } from "../../store/utils/thunkCreators";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     justifySelf: "flex-end",
     marginTop: 15
@@ -16,6 +16,10 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#F4F6FA",
     borderRadius: 8,
     marginBottom: 20
+  },
+  icon: {
+    color: theme.palette.secondary.main,
+    marginLeft: '.7rem' 
   }
 }));
 
@@ -41,6 +45,11 @@ const Input = (props) => {
     setText("");
   };
 
+  const handleUpload = async (event) => {
+    event.preventDefault();
+    console.log('Attach');
+  }
+
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
       <FormControl fullWidth hiddenLabel>
@@ -51,6 +60,17 @@ const Input = (props) => {
           value={text}
           name="text"
           onChange={handleChange}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="add attachment"
+                onClick={handleUpload}
+              >
+                <MoodIcon className={classes.icon}/>
+                <FilterNoneIcon className={classes.icon}/>
+              </IconButton>
+            </InputAdornment>
+          }
         />
       </FormControl>
     </form>
