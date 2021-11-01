@@ -28,6 +28,7 @@ const ActiveChat = (props) => {
   const conversation = props.conversation || {};
   const sortedMessages = props.conversation ? conversation.messages.slice().sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()) : {};
   const [showDialog, setShowDialog] = useState(false);
+  const [attachments, setAttachments] = useState([]);
   
   return (
     <Box className={classes.root}>
@@ -48,11 +49,12 @@ const ActiveChat = (props) => {
               conversationId={conversation.id}
               user={user}
               setShowDialog={setShowDialog}
+              attachments={attachments}
             />
           </Box>
         </>
       )}
-      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} />
+      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} setAttachments={setAttachments}/>
     </Box>
   );
 };

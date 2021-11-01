@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
-  const { postMessage, otherUser, conversationId, user, setShowDialog } = props;
+  const { postMessage, otherUser, conversationId, user, setShowDialog, attachments } = props;
   
 
   const handleChange = (event) => {
@@ -40,7 +40,8 @@ const Input = (props) => {
       text: event.target.text.value,
       recipientId: otherUser.id,
       conversationId,
-      sender: conversationId ? null : user
+      sender: conversationId ? null : user,
+      attachments: attachments,
     };
     await postMessage(reqBody);
     setText("");

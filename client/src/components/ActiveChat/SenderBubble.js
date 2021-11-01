@@ -24,16 +24,24 @@ const useStyles = makeStyles(() => ({
   bubble: {
     background: "#F4F6FA",
     borderRadius: "10px 10px 0 10px"
+  },
+  image: {
+    width: 150,
+    height: 150,
   }
 }));
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { time, text } = props;
+  const { time, text, image } = props;
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
       <Box className={classes.bubble}>
+        {image && image.map((i) => (
+          <img src={image} alt="image" className={classes.image}/>
+        ))}
+        
         <Typography className={classes.text}>{text}</Typography>
       </Box>
     </Box>

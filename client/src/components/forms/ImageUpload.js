@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const ImageUpload = ({setShowDialog, showDialog}) => {
+const ImageUpload = ({setShowDialog, showDialog, setAttachments}) => {
     const classes = useStyles();
     const [images, setImages] = useState([]);
 
@@ -53,12 +53,13 @@ const ImageUpload = ({setShowDialog, showDialog}) => {
             formData.append("file", i);
             formData.append("upload_preset", "t4tlwpvz");
         });
-        
-        
         const res = await customAxios.post(`https://api.cloudinary.com/v1_1/capacity-free/image/upload`, formData);
-        console.log(res)
+        console.log(res.data)
+        setAttachments(() => [res.data.url])
         setShowDialog(false);
+        setImages([]);
     }
+
     const handleClose = () => {
         setShowDialog(false);
     }
