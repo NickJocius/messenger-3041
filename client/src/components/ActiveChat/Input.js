@@ -26,7 +26,8 @@ const useStyles = makeStyles((theme) => ({
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
-  const { postMessage, otherUser, conversationId, user } = props;
+  const { postMessage, otherUser, conversationId, user, setShowDialog } = props;
+  
 
   const handleChange = (event) => {
     setText(event.target.value);
@@ -45,10 +46,10 @@ const Input = (props) => {
     setText("");
   };
 
-  const handleUpload = async (event) => {
-    event.preventDefault();
-    console.log('Attach');
+  const handleDialog = () => {
+    setShowDialog(true);
   }
+
 
   return (
     <form className={classes.root} onSubmit={handleSubmit}>
@@ -64,7 +65,7 @@ const Input = (props) => {
             <InputAdornment position="end">
               <IconButton
                 aria-label="add attachment"
-                onClick={handleUpload}
+                onClick={handleDialog}
               >
                 <MoodIcon className={classes.icon}/>
                 <FilterNoneIcon className={classes.icon}/>
