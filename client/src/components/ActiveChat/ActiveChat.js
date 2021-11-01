@@ -52,9 +52,7 @@ const ActiveChat = (props) => {
           </Box>
         </>
       )}
-      {showDialog && (
-        <ImageUpload setShowDialog={setShowDialog}/>
-        )}
+      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} />
     </Box>
   );
 };
