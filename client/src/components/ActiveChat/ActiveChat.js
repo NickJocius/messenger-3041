@@ -55,6 +55,7 @@ const ActiveChat = (props) => {
               user={user}
               setShowDialog={setShowDialog}
               attachments={attachments}
+              setAttachments={setAttachments}
             />
           </Box>
         </>

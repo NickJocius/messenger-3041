@@ -54,9 +54,7 @@ const ImageUpload = ({setShowDialog, showDialog, setAttachments}) => {
         dataArr.forEach(async (i) =>{
             formData.append("file", i);
             formData.append("upload_preset", "t4tlwpvz");
-
             const res = await customAxios.post(`https://api.cloudinary.com/v1_1/capacity-free/image/upload`, formData)
-            console.log(res.data);
             setAttachments((state) => [...state, res.data.url]);
         });
         setShowDialog(false);

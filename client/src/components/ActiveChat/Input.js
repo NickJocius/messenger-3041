@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const Input = (props) => {
   const classes = useStyles();
   const [text, setText] = useState("");
-  const { postMessage, otherUser, conversationId, user, setShowDialog, attachments } = props;
+  const { postMessage, otherUser, conversationId, user, setShowDialog, attachments, setAttachments } = props;
   
 
   const handleChange = (event) => {
@@ -45,6 +45,7 @@ const Input = (props) => {
     };
     await postMessage(reqBody);
     setText("");
+    setAttachments([]);
   };
 
   const handleDialog = () => {
