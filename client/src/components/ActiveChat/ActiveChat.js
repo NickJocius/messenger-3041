@@ -5,16 +5,20 @@ import { Input, Header, Messages } from "./index";
 import { connect } from "react-redux";
 import ImageUpload from "../forms/ImageUpload";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexGrow: 8,
     flexDirection: "column",
-    position: 'relative'
+    position: 'relative',
+    maxWidth: '100%'
   },
   chatContainer: {
     marginLeft: 41,
     marginRight: 41,
+    [theme.breakpoints.down('xs')]: {
+      margin: 5,
+  },
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
@@ -43,6 +47,7 @@ const ActiveChat = (props) => {
               messages={sortedMessages}
               otherUser={conversation.otherUser}
               userId={user.id}
+              userPhoto={user.photoUrl}
             />
             <Input
               otherUser={conversation.otherUser}
@@ -54,7 +59,7 @@ const ActiveChat = (props) => {
           </Box>
         </>
       )}
-      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} setAttachments={setAttachments}/>
+      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} setAttachments={setAttachments} />
     </Box>
   );
 };

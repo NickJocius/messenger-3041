@@ -36,7 +36,7 @@ const UserForm = ({ heading,userAction,handler, children }) => {
     const classes = useStyles();
 
     return (
-        <Grid container  xs={12} justifyContent="center" className={classes.root}>
+        <Grid container justifyContent="center" className={classes.root}>
             <Box className={classes.formBox}>
                 <Typography variant='h5'>{heading}</Typography>
                 <form onSubmit={handler}>
