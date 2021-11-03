@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { uploadImages } from '../../store/utils/thunkCreators';
 import {
     Modal,
     Backdrop,
@@ -12,8 +12,6 @@ import {
     FormControl, 
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-const customAxios = axios.create();
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,17 +44,17 @@ const ImageUpload = ({setShowDialog, showDialog, setAttachments}) => {
         setImages(() => [...images,event.target.files[0]])
     }
 
-    const handleUpload = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData();
         const dataArr = images.slice();
-        console.log(dataArr)
         dataArr.forEach(async (i) =>{
             formData.append("file", i);
             formData.append("upload_preset", "t4tlwpvz");
-            const res = await customAxios.post(`https://api.cloudinary.com/v1_1/capacity-free/image/upload`, formData)
+            const res = await uploadImages(formData);
+            console.log(res.data)
             setAttachments((state) => [...state, res.data.url]);
-        });
+          });
         setShowDialog(false);
         setImages([]);
     }
@@ -75,7 +73,7 @@ const ImageUpload = ({setShowDialog, showDialog, setAttachments}) => {
             <Fade in={showDialog}>
             <Box className={classes.paper}>
                 <Typography variant="h4">Upload Images</Typography>
-                <form onSubmit={handleUpload}>
+                <form onSubmit={handleSubmit}>
                     <Grid container item spacing={4}>
                         <Grid item xs={12}>
                             <FormControl>
