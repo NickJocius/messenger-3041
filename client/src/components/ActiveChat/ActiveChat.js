@@ -47,7 +47,6 @@ const ActiveChat = (props) => {
               messages={sortedMessages}
               otherUser={conversation.otherUser}
               userId={user.id}
-              userPhoto={user.photoUrl}
             />
             <Input
               otherUser={conversation.otherUser}

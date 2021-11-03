@@ -45,11 +45,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     
   },
-  photoBox: {
-    display: 'flex',
-    justifyContent: "flex-end",
-    
-  },
   photo: {
     width: 20,
     height: 20,
@@ -59,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SenderBubble = (props) => {
   const classes = useStyles();
-  const { time, text, image, userPhoto } = props;
+  const { time, text, image } = props;
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
@@ -71,11 +66,6 @@ const SenderBubble = (props) => {
       <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
       </Box>
-      {image && (
-          <Box className={classes.photoBox}>
-            <img src={userPhoto} alt="user" className={classes.photo} />
-          </Box>
-        )}
     </Box>
   );
 };
