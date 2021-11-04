@@ -1,18 +1,24 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
 import { Input, Header, Messages } from "./index";
 import { connect } from "react-redux";
+import ImageUpload from "../forms/ImageUpload";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexGrow: 8,
-    flexDirection: "column"
+    flexDirection: "column",
+    position: 'relative',
+    maxWidth: '100%'
   },
   chatContainer: {
     marginLeft: 41,
     marginRight: 41,
+    [theme.breakpoints.down('xs')]: {
+      margin: theme.spacing(1),
+  },
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
@@ -25,6 +31,8 @@ const ActiveChat = (props) => {
   const { user } = props;
   const conversation = props.conversation || {};
   const sortedMessages = props.conversation ? conversation.messages.slice().sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()) : {};
+  const [showDialog, setShowDialog] = useState(false);
+  const [attachments, setAttachments] = useState([]);
   
   return (
     <Box className={classes.root}>
@@ -44,10 +52,14 @@ const ActiveChat = (props) => {
               otherUser={conversation.otherUser}
               conversationId={conversation.id}
               user={user}
+              setShowDialog={setShowDialog}
+              attachments={attachments}
+              setAttachments={setAttachments}
             />
           </Box>
         </>
       )}
+      <ImageUpload setShowDialog={setShowDialog} showDialog={showDialog} setAttachments={setAttachments} />
     </Box>
   );
 };

@@ -15,6 +15,9 @@ axios.interceptors.request.use(async function (config) {
   return config;
 });
 
+// axios instance for image upload
+const customAxios = axios.create();
+
 // USER THUNK CREATORS
 
 export const fetchUser = () => async (dispatch) => {
@@ -118,3 +121,12 @@ export const searchUsers = (searchTerm) => async (dispatch) => {
     console.error(error);
   }
 };
+
+// Handle Uploading of Images to cloudinary
+ export const uploadImages = (formData) => {
+  try {
+      return customAxios.post(`https://api.cloudinary.com/v1_1/capacity-free/image/upload`, formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
